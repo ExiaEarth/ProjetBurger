@@ -11,5 +11,21 @@ const mongoose = require('mongoose');
 // Création du serveur
 // import
 const express = require('express');
+const router = require('./routes');
 // inport librairie des erreurs
 require('express-async-errors');
+
+const app=express();
+
+app.use(async(req,res,next)=>{
+    // connextion a la DB
+    await mongoose.connect(DB_CONNECTION);
+    console.log("Connection réussite !");
+     //Une fois qu'elle est correctement établie, on passe à la suite de la requête
+    next()
+})
+app.use('/api',router);
+// met le server sur "écoute" sur le port préciser dans la variable d'environnement PORT
+app.listen(PORT,()=>{
+    console.log(`Serveur en écoute sur le port:${PORT} [${NODE_ENV}]`);
+})
