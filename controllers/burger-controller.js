@@ -1,8 +1,37 @@
 const Burger = require('../models/burger-model');
 const burgerController={
-    getAll:async(req, res)=>{},
+    getAll:async(req, res)=>{
+    //Pour récupérer le offset et le limit passés dans larequête :
+    console.log(req.query)
+    const offset = req.query.offset ? req.query.offset : 0;
+    const limit = req.query.limit ? req.query.limit : 7;
+        
+    },
     getById:async(req, res)=>{},
-    getByCategory:async(req, res)=>{},
+    getByCategory:async(req, res)=>{
+        //On récupère l'id de la route, qui contient l'id de notre catégorie
+        const idCateg=req.params.id;
+        const offset=req.query.offset?req.query.offset:0
+        const limit=req.query.limit?req.query.limit:7
+
+        //Filtre pour le status
+        // let statusFiltrer;
+        // const status=req.query.status;
+        // if (status) {
+        //     if (Array.isArray(status)) {
+        //         statusFiltrer={status:{$in:status}}
+        //     } else {
+        //         statusFiltrer={status:status}
+        //     }
+        // } else {
+        //     statusFiltrer={}
+        // }
+        // const typeFilter={catId:idCateg};
+        // const burger=await Burger.find({$and:[typeFilter,statusFiltrer]})
+        // .populate({
+        //     path:ca
+        // })
+    },
     creat:async(req, res)=>{
         const burgerToAdd=Burger(req.body);
         await burgerToAdd.save();
