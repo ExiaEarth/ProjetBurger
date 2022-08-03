@@ -1,5 +1,7 @@
 
-const argon1=require('argon2');
+const argon2=require('argon2');
+const User = require('../models/user-model');
+const jwtUtils = require('../utils/jwt-utils');
 
 const authController={
     login:async(req,res)=>{
@@ -11,7 +13,7 @@ const authController={
         //filtre :recherche l'utilisateur dont l'email correspond à credential
         //OU son pseudo correspond à la valeur dans credential
         const credentialFilter={$or:[{email:credential},{pseudo:credential}]}
-        const user=await User.finOne(credential);
+        const user=await User.finOne(credentialFilter);
         //vérifie si on a récupérer un utilisateur
         if (!user) {
             return res(401).json({error:'Unauthorized'})
@@ -37,6 +39,9 @@ const authController={
             firstname,
             password : hashedPassword 
         });
+        await userToInsert.save();
+        const token=await jwtUtils.generate(userToInsert);
+        res.status(200).json({token});
     }
 }
 

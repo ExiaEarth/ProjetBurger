@@ -21,7 +21,7 @@ const jwtUtils={
             audience:JWT_AUDIENCE,
             issuer:JWT_ISSUER
         }
-        jwt.sign(payload,JWT_SECRET,option,(error,token)=>{
+        jwt.sign(payload,JWT_SECRET,options,(error,token)=>{
             if (error) {
         //Si notre génération de token a produit une erreur, on passe notre promesse en rejetée
         return reject(error);

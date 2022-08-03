@@ -16,6 +16,8 @@ const router = require('./routes');
 require('express-async-errors');
 // serveur (app)
 const app=express();
+//autorise a utiliser du json()
+app.use(express.json());
 
 app.use(async(req,res,next)=>{
     // connextion a la DB
