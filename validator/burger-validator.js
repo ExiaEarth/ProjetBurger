@@ -1,11 +1,6 @@
 const yup=require('yup');
 
-const idRegex = /^[a-f\d]{24}$/i;
-const statusRegex = /^(created)|(pending)|(done)$/i;
-const dateRegex = /^[0-9]{4}-((0[1-9])|(1[0-2]))-[0-3][0-9]$/
-
-
-const insertburgerValidator=yup.object({
+const insertBurgerValidator=yup.object({
     name :        yup.string().trim().required().min(3).max(255),
     ingredient:   yup.string().trim().required(),
     type:         yup.string().trim().required(),
@@ -22,4 +17,4 @@ const updateBurgerValidator=yup.object({
 
 });
 
-module.exports={insertburgerValidator,updateBurgerValidator};
+module.exports={insertBurgerValidator,updateBurgerValidator};

@@ -8,7 +8,7 @@ const userValidator = require('../validator/user-validator');
 
 const userRouter=require('express').Router()
 
-userRouter.router('/').get(authentification(),userController.getAll)
+userRouter.route('/').get(authentification(),userController.getAll)
 userRouter.route('/id')
     .get(authentification(),idValidator(),userController.getById)
     .put(authentification(["admin"]),idValidator(),bodyValidation(userValidator),userController.update)

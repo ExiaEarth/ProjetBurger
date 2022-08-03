@@ -1,8 +1,8 @@
-const{Schema,model,Type}=require('mongoose');
-const burgerSchema=new Schema({
+const { Schema,model,}=require('mongoose');
+const burgerSchema= new Schema ({
     // Schema en DB
     name:{
-        Type:String,
+        type:String,
         required:true,
         unique:true,
         trim:true

@@ -1,7 +1,6 @@
-const { json } = require("express");
 const UserDTO=require("../dto/user-dto");
 const User=require("../models/user-model");
-const { getById, update } = require("./category-controller");
+// const { getById, update } = require("./category-controller");
 
 const userMapperToDTO=(user)=>new UserDTO(user.id,user.mail,user.pseudo,user.firstname,user.lastname);
 
