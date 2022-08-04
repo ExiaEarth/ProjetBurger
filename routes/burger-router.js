@@ -9,8 +9,8 @@ const burgerRouter=require("express").Router();
 
 burgerRouter.route('/')
     .get(authentification(),burgerController.getAll)      //Etre connecté  
-    .post(authentification(),bodyValidation(insertBurgerValidator),
-    burgerController.creat)
+    .post(/*authentification(["Administrateur"]),*/bodyValidation(insertBurgerValidator),
+    burgerController.create)
      //Etre connecté
 burgerRouter.route('/:id')
     .get(authentification(),idValidator(),burgerController.getById)

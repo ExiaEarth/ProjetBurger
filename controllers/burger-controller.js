@@ -1,3 +1,4 @@
+const { count } = require('../models/burger-model');
 const Burger = require('../models/burger-model');
 const burgerController={
     getAll:async(req, res)=>{
@@ -5,9 +6,21 @@ const burgerController={
     console.log(req.query)
     const offset = req.query.offset ? req.query.offset : 0;
     const limit = req.query.limit ? req.query.limit : 7;
+    let typeFilter;
+    const burger=await Burger.find(typeFilter)
+        .populate({})
+        .populate({})
+        .populate({})
+        .limit(limit)
+        .skip(offset);
+    const count=await Burger.countDocuments();
+    const data={'burger':burger,'count':count}
+    res.status(200).json(data);
         
     },
-    getById:async(req, res)=>{},
+    getById:async(req, res)=>{
+
+    },
     getByCategory:async(req, res)=>{
         //On récupère l'id de la route, qui contient l'id de notre catégorie
         const idCateg=req.params.id;
@@ -32,7 +45,7 @@ const burgerController={
         //     path:ca
         // })
     },
-    creat:async(req, res)=>{
+    create:async(req, res)=>{
         const burgerToAdd=Burger(req.body);
         await burgerToAdd.save();
         res.status(200).json(burgerToAdd);

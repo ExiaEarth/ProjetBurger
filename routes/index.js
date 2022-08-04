@@ -9,7 +9,7 @@ const router=require('express').Router();
 // l'arrivée sur le segment /category, nous devons charger le routeur enfant category-routeur
 // router.use();
 
-router.use('/burger',burgerRouter);
+router.use("/burger",burgerRouter);
 router.use('/user',userRouter)
 router.use("/auth",authRouter);
 
